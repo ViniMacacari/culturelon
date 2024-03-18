@@ -1,0 +1,48 @@
+# Arquivos de compilação
+*.class
+*.war
+*.ear
+*.jar
+
+# Dependências
+/target/
+/lib/
+
+# Arquivos de configuração do ambiente
+.classpath
+.project
+.settings/
+
+# Arquivos de log e dados
+/logs/
+*.log
+*.sql
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+/.idea/
+*.iml
+
+# Dependências gerenciadas pelo Maven
+/.mvn/
+
+# Dependências gerenciadas pelo npm
+/node_modules/
+
+# Arquivos gerados pelo processo de compilação
+/dist/
+/out/
+
+# Arquivos de cache
+/.cache/
+
+# Arquivos de build gerados pelo processo de compilação
+/build/
+
+# Outros
+/.vscode/
+/.sass-cache/
+.env
