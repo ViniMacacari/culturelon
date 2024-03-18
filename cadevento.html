@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultureLon - Cadastrar Evento</title>
+    <link rel="stylesheet" href="/css/cadevento.css">
+    <link rel="stylesheet" href="/css/geral.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mallanna&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <script src="/js/jquery-3.7.1.js" defer></script>
+</head>
+
+<body>
+    <header class="rubik-regular">
+        <h1>CultureLon</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Próximos Eventos</a>
+            <a href="#">Categorias</a>
+            <a href="#">Sobre</a>
+        </nav>
+        <button class="btn-cadastrar">Cadastrar Evento</button>
+    </header>
+
+    <main>
+        <div class="container rubik-regular">
+            <h2>Cadastrar Evento</h2>
+            <form action="#">
+                <div class="input-group">
+                    <label for="nome">Nome do Evento:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Nome do Evento" required>
+                </div>
+                <div class="input-group">
+                    <label for="foto">Foto do Evento:</label>
+                    <input type="file" id="foto" name="foto" accept="image/*" required>
+                </div>
+                <div class="input-group">
+                    <label for="data">Data do Evento:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+                <div class="input-group">
+                    <label for="hora">Hora do Evento:</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+                <div class="input-group">
+                    <label for="local">Local do Evento:</label>
+                    <input type="text" id="local" name="local" placeholder="Local do Evento" required>
+                </div>
+                <div class="input-group">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+                </div>
+                <div class="input-group">
+                    <label for="rua">Rua:</label>
+                    <input type="text" id="rua" name="rua" placeholder="Rua" required>
+                </div>
+                <div class="input-group">
+                    <label for="numero">Número:</label>
+                    <input type="number" id="numero" name="numero" placeholder="Número" required>
+                </div>
+                <div class="input-group">
+                    <label for="descricao">Descrição do Evento:</label>
+                    <textarea class="rubik-regular" id="descricao" name="descricao" placeholder="Descrição do Evento" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="limite">Limite de Participantes:</label>
+                    <input type="number" id="limite" name="limite" placeholder="Limite de Participantes" required>
+                </div>
+                <div class="input-group">
+                    <label for="link">Link Externo (opcional):</label>
+                    <input type="url" id="link" name="link" placeholder="Link Externo (opcional)">
+                </div>
+                <button type="submit">Cadastrar Evento</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="rubik-regular">
+        <p>&copy; 2024 - Todos os direitos reservados</p>
+    </footer>
+</body>
+
+</html>
