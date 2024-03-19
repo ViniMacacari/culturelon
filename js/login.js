@@ -16,4 +16,39 @@ $(document).ready(function () {
         $('#haveAccount').hide()
         $('#titleForm').text('Entrar')
     })
+
+    $('#btnSignup').on('click', criaConta)
 })
+
+function criaConta() {
+    console.log('teste')
+    let emailS = $('#emailSignup').val()
+    let passwordS = $('#passwordSignup').val()
+
+    const data = {
+        email: emailS,
+        password: passwordS
+    }
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+
+    fetch('/signup', requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response)
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => {
+            console.error('Erro ao criar conta:', error)
+        })
+}

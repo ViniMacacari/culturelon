@@ -45,4 +45,5 @@ Thumbs.db
 # Outros
 /.vscode/
 /.sass-cache/
+/private/
 .env
