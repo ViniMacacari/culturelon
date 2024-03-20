@@ -1,3 +1,19 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js'
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB4P6Bk7MKbcG_3GIEI4Wlsg1_VRZtlL5E",
+    authDomain: "culturelon.firebaseapp.com",
+    projectId: "culturelon",
+    storageBucket: "culturelon.appspot.com",
+    messagingSenderId: "422065232759",
+    appId: "1:422065232759:web:e8158ba99e6edea25f9f72",
+    measurementId: "G-YHGVFVR8CY"
+}
+
+const app = initializeApp(firebaseConfig)
+const authFire = getAuth(app)
+
 $(document).ready(function () {
     $('#formSignup').hide()
     $('#haveAccount').hide()
@@ -18,6 +34,13 @@ $(document).ready(function () {
     })
 
     $('#btnSignup').on('click', criaConta)
+    $('#btnLogin').on('click', entrarConta)
+
+    verificarAutenticacao()
+
+    if (window.location.href.indexOf('?#') === -1) {
+        window.location.href += '?#'
+    }
 })
 
 function criaConta() {
@@ -29,7 +52,7 @@ function criaConta() {
         email: emailS,
         password: passwordS
     }
-    
+
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -47,8 +70,43 @@ function criaConta() {
         })
         .then(data => {
             console.log(data)
+            $('#formSignup')[0].reset()
         })
         .catch(error => {
             console.error('Erro ao criar conta:', error)
         })
+}
+
+function entrarConta() {
+    let emailL = $('#emailLogin').val()
+    let passwordL = $('#passwordLogin').val()
+
+    signInWithEmailAndPassword(authFire, emailL, passwordL)
+        .then((userCredential) => {
+            const user = userCredential.user
+            user.getIdToken().then((idToken) => {
+                // Armazene o token de autenticação onde for necessário, como localStorage
+                localStorage.setItem('userToken', idToken)
+
+                // Redirecionar para a página de eventos
+                window.location.href = "eventos.html"
+            }).catch((error) => {
+                console.error('Erro ao obter token de autenticação:', error)
+            })
+        })
+        .catch((error) => {
+            // Tratar erros de login
+            alert("Erro no login: " + error.message)
+        })
+}
+
+function verificarAutenticacao() {
+    const userToken = localStorage.getItem('userToken')
+
+    if (userToken) {
+        console.log("Usuário autenticado")
+        window.location.href = "eventos.html"
+    } else {
+        console.log("Usuário não autenticado")
+    }
 }

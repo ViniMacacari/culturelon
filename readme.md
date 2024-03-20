@@ -2,7 +2,15 @@
 
 # NPM Install (Rode isso para instalar as dependências necessárias):
 (
-    npm i bootstrap@5.3.3 npm i express npm i path npm i mysql npm i dotenv npm i fs npm i -g pm2 npm i firebase-admin npm i firebase
+    npm i bootstrap@5.3.3
+    npm i express
+    npm i path 
+    npm i mysql 
+    npm i dotenv 
+    npm i fs 
+    npm i -g pm2 
+    npm i firebase-admin 
+    npm i firebase
 )
 
 # Rode isso para iniciar o servidor para teste:

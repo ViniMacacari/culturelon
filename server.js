@@ -30,8 +30,6 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
 
-// Seu middleware e rotas do Express vêm aqui
-
 app.listen(PORT, () => {
     console.log(`Servidor está rodando em http://localhost:${PORT}`)
 })
@@ -51,20 +49,21 @@ app.post('/signup', async (req, res) => { // Criar conta
     }
 })
 
-app.post('/login', async (req, res) => { // Login
-    const { email, password } = req.body;
-
-    try {
-        // O usuário faz login no lado do cliente e obtém um token de ID
-        const token = req.body.idToken;
-
-        // Verifica o token de ID no servidor
-        const decodedToken = await admin.auth().verifyIdToken(token);
-        const uid = decodedToken.uid;
-
-        // Retorna uma resposta de sucesso com o UID do usuário
-        return res.status(200).json({ message: 'Login realizado com sucesso!', uid: uid });
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
-    }
-})
+app.post('/posts', (req, res) => {
+    const { titulo, conteudo } = req.body;
+  
+    const novoPostRef = database.ref('posts').push();
+    novoPostRef.set({
+      titulo: titulo,
+      conteudo: conteudo,
+      dataCriacao: admin.database.ServerValue.TIMESTAMP
+    })
+    .then(() => {
+      res.status(201).json({ message: 'Post criado com sucesso!' });
+    })
+    .catch((error) => {
+      console.error("Erro ao criar o post:", error);
+      res.status(500).json({ error: 'Erro ao criar o post' });
+    });
+  });
+  
