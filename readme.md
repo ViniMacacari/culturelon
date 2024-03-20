@@ -11,6 +11,7 @@
     npm i -g pm2 
     npm i firebase-admin 
     npm i firebase
+    npm i multer
 )
 
 # Rode isso para iniciar o servidor para teste:

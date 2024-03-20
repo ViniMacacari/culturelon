@@ -4,6 +4,7 @@ const fs = require('fs')
 const firebase = require('firebase/app')
 const admin = require("firebase-admin")
 const serviceAccount = require("./private/culturelon-firebase-adminsdk-ibas1-c861a1c282.json")
+const multer = require('multer')
 require('firebase/auth')
 
 // Configuração do Firebase
@@ -22,6 +23,17 @@ firebase.initializeApp(firebaseConfig)
 
 const app = express()
 const PORT = 8080
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/') // O diretório onde os arquivos serão salvos temporariamente
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)) // Nome do arquivo com timestamp para evitar conflitos
+    }
+})
+
+const upload = multer({ storage: storage })
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname)))
@@ -49,21 +61,32 @@ app.post('/signup', async (req, res) => { // Criar conta
     }
 })
 
-app.post('/posts', (req, res) => {
-    const { titulo, conteudo } = req.body;
-  
-    const novoPostRef = database.ref('posts').push();
-    novoPostRef.set({
-      titulo: titulo,
-      conteudo: conteudo,
-      dataCriacao: admin.database.ServerValue.TIMESTAMP
-    })
-    .then(() => {
-      res.status(201).json({ message: 'Post criado com sucesso!' });
-    })
-    .catch((error) => {
-      console.error("Erro ao criar o post:", error);
-      res.status(500).json({ error: 'Erro ao criar o post' });
-    });
-  });
-  
+app.post('/cadastro-evento', upload.single('foto'), (req, res) => {
+    console.log("entrou")
+
+    const { nome, data, hora, local, bairro, rua, numero, descricao, limite, link } = req.body
+    const fotoPath = req.file.path // Caminho para o arquivo de imagem temporário
+
+    // Salvar dados do evento no banco de dados (substitua este comentário pelo seu código de salvamento)
+
+    // Publicar dados do evento no Realtime Database
+    const database = admin.database()
+
+    const evento = {
+        nome,
+        data,
+        hora,
+        local,
+        bairro,
+        rua,
+        numero,
+        descricao,
+        limite,
+        link,
+        fotoPath,
+    }
+
+    database.ref('eventos').push(evento)
+
+    res.status(201).json({ message: 'Evento cadastrado com sucesso!' })
+})
