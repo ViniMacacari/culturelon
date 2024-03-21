@@ -63,9 +63,9 @@ function carregaEventos() {
                 contador++
                 const nomeEvento = eventData.nome_evento.length > 30 ? `${eventData.nome_evento.substring(0, 30)}...` : eventData.nome_evento
 
-                const card = document.createElement('div');
-                card.id = `card-${contador}`;
-                card.className = 'card evento-card';
+                const card = document.createElement('div')
+                card.id = `card-${contador}`
+                card.className = 'card evento-card'
 
                 // Adicionar conteúdo ao card
                 card.innerHTML = `
@@ -74,19 +74,24 @@ function carregaEventos() {
                     <p class="data-card">Data: ${eventData.data}</p>
                     <p class="endereco-card">Endereço: ${eventData.endereco}</p>
                     <p class="id-text">${eventData.id}</p>
-                `;
+                    <style>
+                        .id-text {
+                            display: none
+                        }
+                    </style>
+                `
 
                 // Adicionar estilo para esconder o ID
-                const style = document.createElement('style');
+                const style = document.createElement('style')
                 style.textContent = `
                     #id-text {
-                        display: none;
+                        display: none
                     }
-                `;
-                document.head.appendChild(style);
+                `
+                document.head.appendChild(style)
 
                 // Adicionar o card ao container
-                eventosContainer.appendChild(card);
+                eventosContainer.appendChild(card)
 
                 card.addEventListener('click', (function (eventDataFechado) {
                     document.getElementById(`card-${contador}`).addEventListener('click', function () {

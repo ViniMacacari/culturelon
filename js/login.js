@@ -22,6 +22,7 @@ $(document).ready(function () {
         $('#noAccount').hide()
         $('#formSignup').show()
         $('#haveAccount').show()
+        $('#forgot').hide()
         $('#titleForm').text('Cadastrar')
     })
 
@@ -30,6 +31,7 @@ $(document).ready(function () {
         $('#noAccount').show()
         $('#formSignup').hide()
         $('#haveAccount').hide()
+        $('#forgot').show()
         $('#titleForm').text('Entrar')
     })
 
@@ -71,10 +73,16 @@ function criaConta() {
         })
         .then(data => {
             console.log(data)
+            $('#formLogin').show()
+            $('#noAccount').show()
+            $('#formSignup').hide()
+            $('#haveAccount').hide()
+            $('#forgot').show()
+            $('#titleForm').text('Entrar')
             $('#formSignup')[0].reset()
         })
         .catch(error => {
-            console.error('Erro ao criar conta:', error)
+            alert('Erro ao criar conta:', error)
         })
 }
 
