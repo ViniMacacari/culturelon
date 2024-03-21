@@ -1,5 +1,10 @@
 # CultureLon v1.0.0
 
+## Funcionalidades:
+- Cadastro de eventos
+- Visualização de eventos
+- Gerenciamento de usuários
+
 # NPM Install (Rode isso para instalar as dependências necessárias):
 (
     npm i bootstrap@5.3.3
