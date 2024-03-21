@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js'
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js'
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js'
 
 const firebaseConfig = {
     apiKey: "AIzaSyB4P6Bk7MKbcG_3GIEI4Wlsg1_VRZtlL5E",
@@ -35,6 +35,7 @@ $(document).ready(function () {
 
     $('#btnSignup').on('click', criaConta)
     $('#btnLogin').on('click', entrarConta)
+    $('#forgot').on('click', esqueciSenha)
 
     verificarAutenticacao()
 
@@ -109,4 +110,16 @@ function verificarAutenticacao() {
     } else {
         console.log("Usuário não autenticado")
     }
+}
+
+function esqueciSenha() {
+    const email = $('#emailLogin').val()
+
+    sendPasswordResetEmail(authFire, email)
+        .then(() => {
+            console.log("Email enviado com sucesso!")
+        })
+        .catch((error) => {
+            console.error("Erro ao enviar email:", error)
+        })
 }

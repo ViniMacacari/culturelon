@@ -72,6 +72,10 @@ button {
     align-items: center;
 }
 
+.dirColumn {
+    flex-direction: column;
+}
+
 .rubik-regular {
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
