@@ -39,7 +39,7 @@ function uploadFile() {
             const eventTime = $('#hora').val()
             const eventLocation = $('#local').val()
             const eventNbd = $('#bairro').val()
-            const eventAddress = $('#rua').val() + $('#numero').val()
+            const eventAddress = $('#rua').val() + ", " + $('#numero').val()
             const eventDescription = $('#descricao').val()
             const eventPeople = $('#limite').val()
             const eventMore = $('#link').val()
@@ -55,6 +55,7 @@ function uploadDatabase(eventName, imageUrl, eventDate, eventTime, eventLocation
     const newEventRef = push(eventsRef)
 
     set(newEventRef, {
+        id: newEventRef.key,
         nome_evento: eventName,
         url: imageUrl,
         data: eventDate,
