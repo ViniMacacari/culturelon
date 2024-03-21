@@ -24,15 +24,7 @@ firebase.initializeApp(firebaseConfig)
 const app = express()
 const PORT = 8080
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/') // O diretório onde os arquivos serão salvos temporariamente
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)) // Nome do arquivo com timestamp para evitar conflitos
-    }
-})
-
+const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
 app.use(express.json())
@@ -61,32 +53,27 @@ app.post('/signup', async (req, res) => { // Criar conta
     }
 })
 
-app.post('/cadastro-evento', upload.single('foto'), (req, res) => {
-    console.log("entrou")
-
-    const { nome, data, hora, local, bairro, rua, numero, descricao, limite, link } = req.body
-    const fotoPath = req.file.path // Caminho para o arquivo de imagem temporário
-
-    // Salvar dados do evento no banco de dados (substitua este comentário pelo seu código de salvamento)
-
-    // Publicar dados do evento no Realtime Database
-    const database = admin.database()
-
-    const evento = {
-        nome,
-        data,
-        hora,
-        local,
-        bairro,
-        rua,
-        numero,
-        descricao,
-        limite,
-        link,
-        fotoPath,
+app.post('/upload', upload.single('file'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('Nenhum arquivo foi enviado.')
     }
 
-    database.ref('eventos').push(evento)
+    const fileData = req.file.buffer
+    const fileName = req.file.originalname
 
-    res.status(201).json({ message: 'Evento cadastrado com sucesso!' })
+    // Referência para o armazenamento de arquivos no Firebase
+    const storageRef = firebase.storage().ref()
+    const fileRef = storageRef.child(fileName)
+
+    // Fazendo o upload do arquivo
+    fileRef.put(fileData).then(snapshot => {
+        console.log('Arquivo enviado com sucesso para o Firebase.')
+        // Retorna a URL do arquivo após o upload
+        return fileRef.getDownloadURL()
+    }).then(downloadURL => {
+        res.status(200).send(downloadURL)
+    }).catch(error => {
+        console.error('Erro ao enviar arquivo para o Firebase:', error)
+        res.status(500).send('Erro ao enviar arquivo para o Firebase.')
+    })
 })
