@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultureLon - Home</title>
+    <link rel="stylesheet" href="/css/eventos.css">
+    <link rel="stylesheet" href="/css/geral.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mallanna&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"></script>
+    <script src="/js/jquery-3.7.1.js" defer></script>
+    <script src="/js/geral.js" defer></script>
+    <!-- <script src="/js/identificalogin.js" defer></script> -->
+    <script src="/js/carrega-evento.js" defer></script>
+</head>
+
+<body>
+    <header class="rubik-regular">
+        <h1>CultureLon</h1>
+        <nav>
+            <a href="/eventos.html">Home</a>
+            <a href="/sobre.html">Sobre</a>
+            <a href="/conta.html">Minha conta</a>
+        </nav>
+        <button class="btn-cadastrar rubik-regular">Cadastrar Evento</button>
+    </header>
+
+    <main class="rubik-regular">
+        <h4>Evento:</h4>
+        <h1 id="tituloEvento"></h1>
+        <h4>Descricão:</h4>
+        <p id="descricaoEvento"></p>
+        <h4>Local:</h4>
+        <p id="local"></p>
+        <h4>Data:</h4>
+        <p id="data"></p>
+        <h4>Hora:</h4>
+        <p id="hora"></p>
+        <h4>Bairro:</h4>
+        <p id="bairro"></p>
+        <h4>Endereço:</h4>
+        <p id="endereco"></p>
+        <h4>Limite de inscrições:</h4>
+        <p id="limite"></p>
+        <!-- <img id="img-evento"> -->
+        <div class="centerFlex">
+            <button id="saberMais">Saber Mais</button>
+        </div>
+    </main>
+
+    <footer class="rubik-regular">
+        <p>&copy; 2024 - Todos os direitos reservados</p>
+    </footer>
+</body>
+
+</html>
