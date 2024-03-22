@@ -125,7 +125,7 @@ function esqueciSenha() {
 
     sendPasswordResetEmail(authFire, email)
         .then(() => {
-            console.log("Email enviado com sucesso!")
+            alert("Email enviado com sucesso!")
         })
         .catch((error) => {
             console.error("Erro ao enviar email:", error)
