@@ -44,6 +44,10 @@ $(document).ready(function () {
     if (window.location.href.indexOf('?#') === -1) {
         window.location.href += '?#'
     }
+
+    $('#withouLogin').on('click', function () {
+        window.location.href = "eventos.html"
+    })
 })
 
 function criaConta() {
