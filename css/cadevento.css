@@ -42,7 +42,7 @@ main {
 }
 
 .container {
-    width: 500px;
+    width: 50%;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -90,4 +90,10 @@ footer {
 
 .loading {
     height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 80%;
+    }
 }
