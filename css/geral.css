@@ -111,13 +111,13 @@ footer {
         }
 
         100% {
-            height: 100vh;
+            height: 120vh;
         }
     }
 
     @keyframes recuarHeader {
         5% {
-            height: 100vh;
+            height: 120vh;
         }
 
         100% {
@@ -134,7 +134,7 @@ footer {
         pointer-events: none;
     }
 
-    #ham-menu, #div-ham {
+    #ham-menu, #div-ham, header.exp button {
         display: block;
     }
 
@@ -143,7 +143,7 @@ footer {
         position: absolute;
         max-width: 100vw;
         width: 100vw;
-        height: 110vh;
+        height: 120vh;
         display: flex;
         justify-content: center;
         align-items: center;
