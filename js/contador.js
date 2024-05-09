@@ -24,5 +24,5 @@ runTransaction(visitsRef, currentVisits => {
 // Atualiza o número de visitas em tempo real
 onValue(visitsRef, snapshot => {
     const visits = snapshot.val()
-    document.getElementById('contador').textContent = visits
+    document.getElementById('contador').textContent = `Visitas: ${visits}`
 })
