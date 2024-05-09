@@ -20,8 +20,12 @@ const fileInput = $('input[type="file"]')
 
 $(document).ready(function () {
     $('#cadEventBtn').click(function () {
-        uploadFile()
-        loading()
+        if ($('#nome').val() != '' && $('#data').val() != '' && $('#hora').val() != '' && $('#local').val() != '' && $('#rua').val() != '' && $('#numero').val() != '' && $('#descricao').val() != '' && $('#limite').val() != '') {
+            uploadFile()
+            loading()   
+        } else {
+            alert('Preencha todos os campos!')
+        }
     })
     $('.loading').hide()
 })
